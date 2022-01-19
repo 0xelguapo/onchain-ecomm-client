@@ -1,0 +1,110 @@
+import { createContext, useEffect, useState } from "react";
+import useEthereum from "../hooks/useEthereum";
+import { ethers } from "ethers";
+
+const Context = createContext();
+
+function ContextProvider({ children }) {
+  const [currentAccount, setCurrentAccount] = useState();
+  const [network, setNetwork] = useState();
+  const [itemsArray, setItemsArray] = useState([]);
+  const [ethereum, setEthereum] = useState();
+  const { getEthereum } = useEthereum();
+
+  function handleChainChanged() {
+    window.location.reload();
+  }
+
+  const checkEthereum = () => {
+    try {
+      const { ethereum } = window;
+      if (!ethereum) {
+        alert("Please download metamask!");
+      } else {
+        return ethereum;
+      }
+    } catch (err) {
+      console.log("error with ethereum", err);
+    }
+  };
+
+  const checkPurchase = async (ethereum) => {
+    try {
+      const iContract = await getEthereum(ethereum);
+      await iContract.on("itemEvent", (index, step, address, description) => {
+        console.log('itemEvent', index, step, address, description);
+        getItems(ethereum);
+      })
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  const getItems = async (ethereum) => {
+    try {
+      const iContract = await getEthereum(ethereum);
+      const items = await iContract.getAllItems();
+      let itemsCleaned = [];
+      items.forEach((item) => {
+        itemsCleaned.push({
+          id: item.id,
+          address: item._item,
+          timesPurchased: item.timesPurchased,
+          price: item.priceInWei,
+          identifier: item.identifier,
+          description: item.description,
+          imageUrl: item.imageUrl,
+        });
+      });
+      setItemsArray(itemsCleaned);
+      console.log("itemsCleaned", itemsCleaned);
+    } catch (err) {
+      console.log("getItems error", err);
+    }
+  };
+
+  const checkWallet = async () => {
+    const ethereum = checkEthereum();
+    const accounts = await ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    const chainId = await ethereum.request({ method: "eth_chainId" });
+    if (accounts.length !== 0) {
+      const account = accounts[0];
+      setCurrentAccount(account);
+      setNetwork(chainId);
+      await getItems(ethereum);
+    } else {
+      console.log("No account found");
+    }
+  };
+
+  useEffect(() => {
+    const ethereum = checkEthereum();
+    if (ethereum) {
+      checkWallet();
+      setEthereum(ethereum);
+      checkPurchase(ethereum);
+    }
+    
+    ethereum.on("chainChanged", handleChainChanged);
+    ethereum.on("connect", handleChainChanged);
+    return () => {
+      if (network === "0x4") {
+        ethereum.removeListener("chainChanged", handleChainChanged);
+      } else if (currentAccount) {
+        ethereum.removeListener("connect", handleChainChanged);
+      }
+    };
+  }, []);
+
+  return (
+    <Context.Provider
+      value={{ currentAccount, network, checkWallet, itemsArray, ethereum }}
+    >
+      {children}
+    </Context.Provider>
+  );
+}
+
+export { ContextProvider, Context };

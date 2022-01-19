@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+}
+
+.container:hover {
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 0px 100px 5px rgba(97, 97, 97, 0.5);
+}
+
+.upper {
+}
+
+.lower {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: thicccsemi;
+}
+
+.cta {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  color: #5d5d5d;
+}
+
+.shop {
+  background: none;
+  border: none;
+  font-family: thicccsemi;
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+.shop:hover {
+  cursor: pointer;
+}
+
+.price {
+  font-family: thicccbold;
+}

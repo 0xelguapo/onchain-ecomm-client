@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+    padding: 1% 0;
+    justify-content: space-between;
+    height: 100px;
+    align-items: center;
+}
+
+.title {
+    font-family: thicccmed;
+    margin: 0;
+}
+
+
+.right {
+    display: flex;
+    text-align: right;
+}
+
+.connect {
+    align-items: center;
+    text-align: right;
+}
+
+.button {
+    font-family: thicccmed;
+    color: white;
+    background: #3d3d3d;
+    border: none;
+    font-size: 1rem;
+    padding: 0 3%;
+    height: 40px;
+    width: 180px;
+}
+
+.button:hover{
+    transform: translateY(-1px);
+    cursor: pointer;
+    box-shadow: 1px 3px 0 0 rgba(112, 112, 112, 0.466);
+}
+
+.error {
+    margin: .2rem 0 0 0;
+    color: red;
+    font-size: .9rem;
+    right: 10%;
+}
+
+.success {
+    font-family: thicccbold;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    color: white;
+    justify-self: right;
+    width: 150px;
+    background: #b617ff;
+    text-align: center;
+}

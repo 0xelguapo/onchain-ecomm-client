@@ -1,7 +1,48 @@
+@font-face {
+  src: url(/fonts/Webfont/THICCCBOI-Thin.woff2);
+  font-family: thicccthin;
+}
+
+@font-face {
+  src: url(/fonts/Webfont/THICCCBOI-Light.woff2);
+  font-family: thiccclight;
+}
+
+@font-face {
+  src: url(/fonts/Webfont/THICCCBOI-Regular.woff2);
+  font-family: thicccreg;
+}
+
+@font-face {
+  src: url(/fonts/Webfont/THICCCBOI-Medium.woff2);
+  font-family: thicccmed;
+}
+
+@font-face {
+  src: url(/fonts/Webfont/THICCCBOI-SemiBold.woff2);
+  font-family: thicccsemi;
+}
+
+@font-face {
+  src: url(/fonts/Webfont/THICCCBOI-Bold.woff2);
+  font-family: thicccbold;
+}
+
+@font-face {
+  src: url(/fonts/Webfont/THICCCBOI-Black.woff2);
+  font-family: thicccblack;
+}
+
+@font-face {
+  src: url(/fonts/Webfont/THICCCBOI-ThicccAF.woff2);
+  font-family: thicccaf;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
+  background: #f1f1f1;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -13,4 +54,16 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.modelImage {
+  object-fit: cover;
+}
+
+.itemImage {
+  object-fit: cover;
+}
+
+.productImage {
+  object-fit: cover;
 }
