@@ -15,7 +15,7 @@
 
 .left {
   display: flex;
-  flex: .5;
+  flex: 0.5;
   flex-direction: column;
   justify-content: center;
   padding-left: 5%;
@@ -35,7 +35,7 @@
 .right {
   display: flex;
   justify-content: center;
-  flex: .5;
+  flex: 0.5;
 }
 
 .button {
@@ -70,6 +70,12 @@
 .featuredItems {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
+}
+
+.itemContainer {
+  display: flex;
+  justify-content: center;
 }
 
 .concept {
@@ -78,7 +84,7 @@
 
 .conceptTitle {
   position: absolute;
-  width: 80%;
+  width: 70%;
   padding: 0 3rem;
   font-family: thicccmed;
   margin-top: 4rem;
@@ -86,7 +92,7 @@
   color: white;
 }
 
-.conceptBackground{
+.conceptBackground {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -102,7 +108,7 @@
   margin: 0 1rem;
   height: 375px;
   background: rgb(246, 246, 246);
-  box-shadow: 0 50px 130px 0px rgba(57, 61, 70, .15);
+  box-shadow: 0 50px 130px 0px rgba(57, 61, 70, 0.15);
 }
 
 .boxTitle {
@@ -111,13 +117,14 @@
   font-size: 1.7rem;
 }
 
-.boxDescription{
+.boxDescription {
   font-family: thicccreg;
   font-size: 1.2rem;
   line-height: 1.7rem;
 }
 
-.oneFeature{
+
+.oneFeatureContainer {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -143,16 +150,16 @@
   font-size: 3rem;
 }
 
-.oneFeatureDescription{
+.oneFeatureDescription {
   font-family: thicccreg;
   font-size: 2rem;
 }
-.price{
+.price {
   font-family: thicccsemi;
   font-size: 1.5rem;
 }
 
-.wei{
+.wei {
   font-family: thicccreg;
   font-size: 1rem;
 }
@@ -179,9 +186,129 @@
   color: #cccccc;
 }
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+@media screen and (max-width: 1140px) {
+  .container {
+    width: 90%;
   }
+
+  .endingOutline {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 890px) {
+  .container {
+    width: 90%;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .conceptTitle {
+    width: 90%;
+  }
+
+  .boxTitle {
+    font-size: 1.4rem;
+  }
+
+  .boxDescription {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    width: 98%;
+    text-align: center;
+    padding: 0;
+  }
+
+  .mainHero {
+    flex-direction: column;
+    width: 100vw;
+    padding-top: 2rem;
+  }
+
+  .left {
+    padding: 2rem 0;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+  }
+
+  .featuredItems {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .itemContainer {
+    width: auto;
+  }
+
+  .concept {
+    margin-bottom: 8rem;
+  }
+
+  .conceptTitle {
+    width: 100%;
+    font-size: 2.5rem;
+  }
+
+  .conceptBackground {
+    flex-direction: column;
+    height: 200vh;
+    align-items: center;
+    padding: 15rem 1rem;
+  }
+
+  .conceptBox {
+    width: 100%;
+  }
+
+  .boxTitle {
+    font-size: 2rem;
+  }
+
+  .boxDescription {
+    font-size: 1.25rem;
+  }
+
+  .oneFeatureContainer {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .oneFeatureLeft {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .oneFeatureTitle{
+    font-size: 2rem;
+  }
+
+  .oneFeatureDescription{
+    font-size: 1.5rem;
+  }
+
+  .ending {
+    height: 300px;
+  }
+
+  .endingOutline {
+    height: 33%;
+    width: 94%;
+  }
+
+  .endingTitle{
+    font-size: 3rem;
+  }
+
 }

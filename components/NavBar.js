@@ -3,15 +3,26 @@ import { useContext } from "react";
 import { Context } from "../context/Context.js";
 import styles from "../styles/NavBar.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function NavBar() {
-  const { currentAccount, network, checkWallet } = useContext(Context);
+  const { currentAccount, network, checkWallet, ordersArray } =
+    useContext(Context);
+  const length = ordersArray.length;
 
   return (
     <nav className={styles.container}>
       <div className={styles.left}>
         <Link href="/">
           <a>
+            <div className={styles.logo}>
+              <Image
+                className="logo"
+                src="/blockchain.png"
+                width={50}
+                height={50}
+              />
+            </div>
             <h1 className={styles.title}>onChainCommerce.</h1>
           </a>
         </Link>
@@ -32,6 +43,7 @@ export default function NavBar() {
               <Link href="/user/my-orders">
                 <a>My Orders</a>
               </Link>
+              <div className={styles.length}>{length}</div>
             </div>
             <div className={styles.account}>
               {currentAccount.substring(0, 5)}...

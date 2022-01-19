@@ -10,6 +10,7 @@ export default function Item({ imageUrl, identifier, price }) {
     <div className={styles.container}>
       <div className={styles.upper}>
         <Image
+        layout="responsive"
           className="itemImage"
           src={imageUrl}
           width={350}

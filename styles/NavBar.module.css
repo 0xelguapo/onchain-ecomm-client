@@ -1,77 +1,122 @@
 .container {
-    display: flex;
-    padding: 1% 0;
-    justify-content: space-between;
-    height: 100px;
-    align-items: center;
+  display: flex;
+  padding: 1% 0;
+  justify-content: space-between;
+  height: 100px;
+  align-items: center;
+}
+
+.logo{
+    display: none;
 }
 
 .title {
-    font-family: thicccmed;
-    margin: 0;
+  font-family: thicccmed;
+  margin: 0;
 }
 
-
 .right {
-    display: flex;
-    text-align: right;
+  display: flex;
+  text-align: right;
 }
 
 .connect {
-    align-items: center;
-    text-align: right;
+  align-items: center;
+  text-align: right;
 }
 
 .button {
-    font-family: thicccmed;
-    color: white;
-    background: #3d3d3d;
-    border: none;
-    font-size: 1rem;
-    padding: 0 3%;
-    height: 40px;
-    width: 180px;
+  font-family: thicccmed;
+  color: white;
+  background: #3d3d3d;
+  border: none;
+  font-size: 1rem;
+  padding: 0 3%;
+  height: 40px;
+  width: 180px;
 }
 
-.button:hover{
-    transform: translateY(-1px);
-    cursor: pointer;
-    box-shadow: 1px 3px 0 0 rgba(112, 112, 112, 0.466);
+.button:hover {
+  transform: translateY(-1px);
+  cursor: pointer;
+  box-shadow: 1px 3px 0 0 rgba(112, 112, 112, 0.466);
 }
 
 .error {
-    margin: .2rem 0 0 0;
-    color: red;
-    font-size: .9rem;
-    right: 10%;
+  margin: 0.2rem 0 0 0;
+  color: red;
+  font-size: 0.9rem;
+  right: 10%;
 }
 
 .success {
-    display: flex;
+  display: flex;
 }
 
 .orders {
-    font-family: thicccbold;
-    font-size: 1.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 12rem;
+  font-family: thicccbold;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12rem;
 }
 
 .orders:hover {
-    cursor: pointer;
-    text-decoration: underline;
-    font-size: 1.25rem;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 1.25rem;
 }
 
 .account {
-    font-family: thicccbold;
-    padding: .5rem 1rem;
-    border-radius: 5px;
-    color: white;
-    justify-self: right;
-    width: 150px;
-    background: #b617ff;
-    text-align: center;
+  font-family: thicccbold;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  color: white;
+  justify-self: right;
+  width: 150px;
+  background: #b617ff;
+  text-align: center;
+}
+
+.length {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  background: rgba(255, 15, 15, 0.801);
+  height: 18px;
+  width: 18px;
+  text-align: center;
+  border-radius: 50%;
+  color: white;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 700px) {
+  .title {
+    display: none;
+    font-size: 1rem;
+  }
+
+  .logo{
+      display: inline-block
+  }
+
+  .success {
+
+  }
+
+  .account {
+      display: flex;
+      justify-content: center;
+      width: 100px;
+      font-size: .7rem;
+  }
+
+  .orders {
+    width: auto;
+    font-size: 1rem;
+    margin-right: 1rem;
+  }
 }

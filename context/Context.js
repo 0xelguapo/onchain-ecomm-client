@@ -8,12 +8,24 @@ function ContextProvider({ children }) {
   const [currentAccount, setCurrentAccount] = useState();
   const [network, setNetwork] = useState();
   const [itemsArray, setItemsArray] = useState([]);
+  const [ordersArray, setOrdersArray] = useState([]);
   const [ethereum, setEthereum] = useState();
   const { getEthereum } = useEthereum();
 
   function handleChainChanged() {
     window.location.reload();
   }
+
+  const fetchOrders = async (ethereum) => {
+    try {
+      const iContract = await getEthereum(ethereum);
+      const myOrders = await iContract.getAllOrders(ethereum.selectedAddress);
+      console.log("myOrders", myOrders);
+      setOrdersArray(myOrders);
+    } catch (err) {
+      console.log("orderFetchError", err);
+    }
+  };
 
   const checkEthereum = () => {
     try {
@@ -84,6 +96,7 @@ function ContextProvider({ children }) {
     if (ethereum) {
       checkWallet();
       setEthereum(ethereum);
+      fetchOrders(ethereum);
       checkPurchase(ethereum);
     }
     
@@ -100,7 +113,7 @@ function ContextProvider({ children }) {
 
   return (
     <Context.Provider
-      value={{ currentAccount, network, checkWallet, itemsArray, ethereum }}
+      value={{ currentAccount, checkEthereum, network, checkWallet, itemsArray, ethereum, ordersArray }}
     >
       {children}
     </Context.Provider>

@@ -12,6 +12,7 @@
 }
 
 .upper {
+  display: block;
 }
 
 .lower {
@@ -44,4 +45,28 @@
 
 .price {
   font-family: thicccbold;
+}
+
+@media screen and (max-width: 1532px) {
+  .container {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 890px) {
+  .container {
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    width: 90vw;
+  }
 }
