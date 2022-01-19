@@ -91,7 +91,7 @@ export default function Home() {
       </div>
       <div className={styles.oneFeature}>
         {itemsArray.slice(3, 4).map((item) => (
-          <div key={parseInt(item.id)}>
+          <>
             <div className={styles.oneFeatureLeft} key={item.id}>
               <h1 className={styles.oneFeatureTitle}>{item.identifier}</h1>
               <p className={styles.oneFeatureDescription}>{item.description}</p>
@@ -109,7 +109,7 @@ export default function Home() {
                 height={450}
               />
             </div>
-          </div>
+          </>
         ))}
       </div>
       <div className={styles.ending}>

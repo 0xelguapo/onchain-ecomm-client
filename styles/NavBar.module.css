@@ -47,6 +47,25 @@
 }
 
 .success {
+    display: flex;
+}
+
+.orders {
+    font-family: thicccbold;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12rem;
+}
+
+.orders:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 1.25rem;
+}
+
+.account {
     font-family: thicccbold;
     padding: .5rem 1rem;
     border-radius: 5px;

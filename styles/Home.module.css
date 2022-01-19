@@ -120,11 +120,21 @@
 .oneFeature{
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-between;
   background: white;
   padding: 2rem;
   height: 500px;
   margin-bottom: 5rem;
+}
+
+.oneFeatureLeft {
+  width: 50%;
+}
+
+.oneFeatureRight {
+  flex: 1;
+  max-width: 450px;
 }
 
 .oneFeatureTitle {
@@ -159,7 +169,7 @@
   justify-self: center;
   position: absolute;
   border: 1px solid #cccccc;
-  height: 465px;
+  height: 470px;
   width: 68%;
 }
 

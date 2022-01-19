@@ -8,7 +8,7 @@ export default function NavBar() {
   const { currentAccount, network, checkWallet } = useContext(Context);
 
   return (
-    <div className={styles.container}>
+    <nav className={styles.container}>
       <div className={styles.left}>
         <Link href="/">
           <a>
@@ -28,11 +28,18 @@ export default function NavBar() {
           </div>
         ) : (
           <div className={styles.success}>
-            {currentAccount.substring(0, 5)}...
-            {currentAccount.substring(37, 42)}
+            <div className={styles.orders}>
+              <Link href="/user/my-orders">
+                <a>My Orders</a>
+              </Link>
+            </div>
+            <div className={styles.account}>
+              {currentAccount.substring(0, 5)}...
+              {currentAccount.substring(37, 42)}
+            </div>
           </div>
         )}
       </div>
-    </div>
+    </nav>
   );
 }
