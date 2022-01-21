@@ -6,19 +6,19 @@ import { Context } from "../../context/Context.js";
 import styles from "../../styles/Product.module.css";
 
 const Product = () => {
-  const [itemObject, setItemObject] = useState("");
   const router = useRouter();
   const { id, product } = router.query;
 
   const { itemsArray, ethState } = useContext(Context);
 
+
   const newItem = itemsArray.filter((item) => item.identifier === id)[0];
   // const itemIndex = itemsArray.findIndex((item) => item.identifier === id);
 
   if (!newItem) return <p></p>;
-  console.log("newItem", newItem);
 
   const handlePurchase = async () => {
+    console.log("ethstate", ethState);
     try {
       const txHash = await ethState.request({
         method: "eth_sendTransaction",

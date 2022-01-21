@@ -22,6 +22,7 @@ function ContextProvider({ children }) {
       const myOrders = await iContract.getAllOrders(ethereum.selectedAddress);
       console.log("myOrders", myOrders);
       setOrdersArray(myOrders);
+      console.log("fetchedOrders");
     } catch (err) {
       console.log("orderFetchError", err);
     }
@@ -47,6 +48,7 @@ function ContextProvider({ children }) {
       await iContract.on("itemEvent", (index, step, address, description) => {
         console.log("itemEvent", index, step, address, description);
         getItems(ethereum);
+        fetchOrders(ethereum);
       });
     } catch (err) {
       console.log(err);
@@ -111,7 +113,7 @@ function ContextProvider({ children }) {
     return () => {
       if (network === "0x4") {
         ethereum.removeListener("chainChanged", handleChainChanged);
-      } 
+      }
     };
   }, [currentAccount]);
 

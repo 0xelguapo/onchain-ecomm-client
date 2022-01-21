@@ -83,10 +83,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
+  font-size: .8rem;
   background: rgba(255, 15, 15, 0.801);
-  height: 18px;
-  width: 18px;
+  height: 20px;
+  width: 20px;
   text-align: center;
   border-radius: 50%;
   color: white;
