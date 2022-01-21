@@ -75,8 +75,7 @@ function ContextProvider({ children }) {
     }
   };
 
-  const checkWallet = async () => {
-    const ethereum = checkEthereum();
+  const checkWallet = async (ethereum) => {
     const accounts = await ethereum.request({
       method: "eth_requestAccounts",
     });
@@ -95,7 +94,7 @@ function ContextProvider({ children }) {
   useEffect(() => {
     const ethereum = checkEthereum();
     if(ethereum) {
-      checkWallet();
+      checkWallet(ethereum);
       setEthereum(ethereum);
       checkPurchase(ethereum);
     }
