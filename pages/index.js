@@ -91,8 +91,8 @@ export default function Home() {
       </div>
       <div className={styles.oneFeature}>
         {itemsArray.slice(3, 4).map((item) => (
-          <div className={styles.oneFeatureContainer}>
-            <div className={styles.oneFeatureLeft} key={item.id}>
+          <div className={styles.oneFeatureContainer} key={item.id}>
+            <div className={styles.oneFeatureLeft}>
               <h1 className={styles.oneFeatureTitle}>{item.identifier}</h1>
               <p className={styles.oneFeatureDescription}>{item.description}</p>
               <p className={styles.price}>

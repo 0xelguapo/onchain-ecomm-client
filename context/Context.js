@@ -86,6 +86,7 @@ function ContextProvider({ children }) {
       setCurrentAccount(account);
       setNetwork(chainId);
       await getItems(ethereum);
+      await fetchOrders(ethereum);
     } else {
       console.log("No account found");
     }
@@ -93,12 +94,10 @@ function ContextProvider({ children }) {
 
   useEffect(() => {
     const ethereum = checkEthereum();
-    if (ethereum) {
-      checkWallet().then(() => {
-        setEthereum(ethereum);
-        fetchOrders(ethereum);
-        checkPurchase(ethereum);
-      });
+    if(ethereum) {
+      checkWallet();
+      setEthereum(ethereum);
+      checkPurchase(ethereum);
     }
 
     ethereum.on("chainChanged", handleChainChanged);
