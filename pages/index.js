@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useRef, useContext } from "react";
 import { Context } from "../context/Context";
 import Head from "next/head";
 import Image from "next/image";
@@ -9,6 +9,10 @@ import Item from "../components/Item";
 
 export default function Home() {
   const { itemsArray } = useContext(Context);
+  const scrollRef = useRef(null);
+
+  const handleScroll = () => scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'center'});
+
   return (
     <div className={styles.container}>
       <Head>
@@ -28,7 +32,7 @@ export default function Home() {
             straight from your metamask.
           </p>
           <div className={styles.cta}>
-            <button className={styles.button}>Shop Now</button>
+            <button onClick={handleScroll} className={styles.button}>Shop Now</button>
           </div>
         </div>
         <div className={styles.right}>
@@ -40,7 +44,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className={styles.featured}>
+      <div className={styles.featured} ref={scrollRef}>
         <h1 className={styles.featuredTitle}>Featured Collection</h1>
         <div className={styles.featuredItems}>
           {itemsArray.slice(0, 3).map((item) => (
@@ -99,7 +103,11 @@ export default function Home() {
                 <Image src="/eth.svg" width={15} height={15} />
                 {parseInt(item.price)} <span className={styles.wei}>Wei</span>
               </p>
-              <button className={styles.button}>Purchase</button>
+              <Link href={"/product/" + item.identifier}>
+                <a>
+                  <button className={styles.button}>Shop</button>
+                </a>
+              </Link>
             </div>
             <div className={styles.oneFeatureRight}>
               <Image

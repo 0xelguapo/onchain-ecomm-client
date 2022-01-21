@@ -10,7 +10,7 @@ const Product = () => {
   const router = useRouter();
   const { id, product } = router.query;
 
-  const { itemsArray, ethereum } = useContext(Context);
+  const { itemsArray, ethState } = useContext(Context);
 
   const newItem = itemsArray.filter((item) => item.identifier === id)[0];
   // const itemIndex = itemsArray.findIndex((item) => item.identifier === id);
@@ -20,11 +20,11 @@ const Product = () => {
 
   const handlePurchase = async () => {
     try {
-      const txHash = await ethereum.request({
+      const txHash = await ethState.request({
         method: "eth_sendTransaction",
         params: [
           {
-            from: ethereum.selectedAddress,
+            from: ethState.selectedAddress,
             to: newItem.address,
             value: newItem.price._hex,
             chainId: "0x4",

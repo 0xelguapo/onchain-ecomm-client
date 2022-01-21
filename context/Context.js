@@ -9,7 +9,7 @@ function ContextProvider({ children }) {
   const [network, setNetwork] = useState();
   const [itemsArray, setItemsArray] = useState([]);
   const [ordersArray, setOrdersArray] = useState([]);
-  const [ethereum, setEthereum] = useState();
+  const [ethState, setEthState] = useState();
   const { getEthereum } = useEthereum();
 
   function handleChainChanged() {
@@ -92,7 +92,7 @@ function ContextProvider({ children }) {
         console.log("No account found");
       }
     } catch (err) {
-      console.log('checkwallet error', err)
+      console.log("checkwallet error", err);
     }
   };
 
@@ -100,23 +100,20 @@ function ContextProvider({ children }) {
     const ethereum = checkEthereum();
     if (ethereum) {
       checkWallet(ethereum);
-      setEthereum(ethereum);
+      setEthState(ethereum);
       checkPurchase(ethereum);
+      ethereum.on("chainChanged", handleChainChanged);
     }
-    if(!ethereum) {
+    if (!ethereum) {
       return;
     }
-    
-    ethereum.on("chainChanged", handleChainChanged);
-    ethereum.on("connect", handleChainChanged);
+
     return () => {
       if (network === "0x4") {
         ethereum.removeListener("chainChanged", handleChainChanged);
-      } else if (currentAccount) {
-        ethereum.removeListener("connect", handleChainChanged);
-      }
+      } 
     };
-  }, []);
+  }, [currentAccount]);
 
   return (
     <Context.Provider
@@ -126,7 +123,7 @@ function ContextProvider({ children }) {
         network,
         checkWallet,
         itemsArray,
-        ethereum,
+        ethState,
         ordersArray,
       }}
     >

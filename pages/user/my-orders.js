@@ -1,6 +1,5 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { Context } from "../../context/Context";
-import useEthereum from "../../hooks/useEthereum";
 import NavBar from "../../components/NavBar";
 import styles from "../../styles/Orders.module.css";
 import Head from "next/head";
@@ -8,7 +7,6 @@ import Image from "next/image";
 
 export default function MyOrders() {
   const { ordersArray } = useContext(Context);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -20,14 +18,14 @@ export default function MyOrders() {
       <div className={styles.mainContainer}>
         {ordersArray.map((order) => {
           return (
-            <div className={styles.orderContainer} key={order.id}>
+            <div className={styles.orderContainer} key={parseInt(order.id)}>
               <div className={styles.imageContainer}>
                 <Image
                   className="itemImage"
                   layout="responsive"
                   src={order.imageUrl}
-                  width={200}
-                  height={200}
+                  width={150}
+                  height={150}
                 />
               </div>
               <div className={styles.orderInfo}>
