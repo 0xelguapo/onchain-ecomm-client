@@ -44,13 +44,13 @@ function ContextProvider({ children }) {
     try {
       const iContract = await getEthereum(ethereum);
       await iContract.on("itemEvent", (index, step, address, description) => {
-        console.log('itemEvent', index, step, address, description);
+        console.log("itemEvent", index, step, address, description);
         getItems(ethereum);
-      })
-    } catch(err) {
-      console.log(err)
+      });
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   const getItems = async (ethereum) => {
     try {
@@ -94,12 +94,13 @@ function ContextProvider({ children }) {
   useEffect(() => {
     const ethereum = checkEthereum();
     if (ethereum) {
-      checkWallet();
-      setEthereum(ethereum);
-      fetchOrders(ethereum);
-      checkPurchase(ethereum);
+      checkWallet().then(() => {
+        setEthereum(ethereum);
+        fetchOrders(ethereum);
+        checkPurchase(ethereum);
+      });
     }
-    
+
     ethereum.on("chainChanged", handleChainChanged);
     ethereum.on("connect", handleChainChanged);
     return () => {
@@ -113,7 +114,15 @@ function ContextProvider({ children }) {
 
   return (
     <Context.Provider
-      value={{ currentAccount, checkEthereum, network, checkWallet, itemsArray, ethereum, ordersArray }}
+      value={{
+        currentAccount,
+        checkEthereum,
+        network,
+        checkWallet,
+        itemsArray,
+        ethereum,
+        ordersArray,
+      }}
     >
       {children}
     </Context.Provider>
