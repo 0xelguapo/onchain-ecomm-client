@@ -32,6 +32,7 @@ function ContextProvider({ children }) {
       const { ethereum } = window;
       if (!ethereum) {
         alert("Please download metamask!");
+        return;
       } else {
         return ethereum;
       }
@@ -76,29 +77,36 @@ function ContextProvider({ children }) {
   };
 
   const checkWallet = async (ethereum) => {
-    const accounts = await ethereum.request({
-      method: "eth_requestAccounts",
-    });
-    const chainId = await ethereum.request({ method: "eth_chainId" });
-    if (accounts.length !== 0) {
-      const account = accounts[0];
-      setCurrentAccount(account);
-      setNetwork(chainId);
-      await getItems(ethereum);
-      await fetchOrders(ethereum);
-    } else {
-      console.log("No account found");
+    try {
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      const chainId = await ethereum.request({ method: "eth_chainId" });
+      if (accounts.length !== 0) {
+        const account = accounts[0];
+        setCurrentAccount(account);
+        setNetwork(chainId);
+        await getItems(ethereum);
+        await fetchOrders(ethereum);
+      } else {
+        console.log("No account found");
+      }
+    } catch (err) {
+      console.log('checkwallet error', err)
     }
   };
 
   useEffect(() => {
     const ethereum = checkEthereum();
-    if(ethereum) {
+    if (ethereum) {
       checkWallet(ethereum);
       setEthereum(ethereum);
       checkPurchase(ethereum);
     }
-
+    if(!ethereum) {
+      return;
+    }
+    
     ethereum.on("chainChanged", handleChainChanged);
     ethereum.on("connect", handleChainChanged);
     return () => {
